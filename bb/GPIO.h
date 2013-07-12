@@ -13,7 +13,10 @@ class GPIO
 	/*	The GPIO class is used for communicating between the BB's IO
 		system that controls input and output pins, how they are configured,
 		and interacting with them. The class gives a high level of control
-		as opposed to the difficulty and length of managing the IO manually. */
+		as opposed to the difficulty and length of managing the IO manually. 
+
+		Based on code by Matt Richardson on Github
+		https://github.com/mrichardson23/mrBBIO		*/
 
 public:
 	// Constants
