@@ -12,6 +12,11 @@ class RobotRun : public Run
 public:
 	RobotRun();
 	~RobotRun();
+
+	// Overriden from Run class
+	void setup();
+	bool loop();
+	void cleanup();
 };
 
 #endif

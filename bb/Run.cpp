@@ -4,10 +4,7 @@ Run::Run() {
 	isRunning = true; 
 }
 
-Run::~Run() 
-{ 
-	delete isRunning;
-}
+Run::~Run() { }
 
 void Run::run()
 {
