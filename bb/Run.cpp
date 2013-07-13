@@ -17,4 +17,5 @@ void Run::run()
 		isRunning = loop();
 	}
 
+	cleanup();
 }
