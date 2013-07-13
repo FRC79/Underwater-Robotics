@@ -9,6 +9,9 @@ class Run
 		and takes care of the back-end ordering of those functions	*/
 
 public:
+	// Constants for loop returns
+	static const bool RELOOP = true;
+	static const bool EXIT = false;
 
 	// Constructor and Destructor
 	Run();

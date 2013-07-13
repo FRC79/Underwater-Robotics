@@ -18,8 +18,8 @@ bool RobotRun::loop()
 	// Loop function runs iteratively (over and over again)
 	
 
-	return false; // true: we want to keep looping
-				 // false: we want to terminate loop
+	return EXIT; // RELOOP: we want to keep looping
+				 // EXIT: we want to terminate loop
 }
 
 void RobotRun::cleanup() 
