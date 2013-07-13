@@ -1,8 +1,6 @@
 #include "RobotRun.h"
 #include "gpio\SimpleGPIO.h"
 
-using namespace std;
-
 RobotRun::RobotRun() { }
 
 RobotRun::~RobotRun() { }
