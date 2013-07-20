@@ -1,0 +1,16 @@
+[gui]
+//possible gui interfaces
+first smart dashboard
+rails web application
+
+[c-libs]
+//c libraries that may be useful or we may need to generate by hand
+json
+xml
+server
+client
+
+[programming decisions]
+gui
+interface libraries
+comm libraries (robot to dashboard)
