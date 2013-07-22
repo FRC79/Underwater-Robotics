@@ -2,6 +2,8 @@
 #define ROBOTRUN_H
 
 #include "Run.h"
+#include "lib\gpio\SimpleGPIO.h"
+#include "lib\analog\Analog.h"
 
 class RobotRun : public Run
 {
@@ -17,6 +19,9 @@ public:
 	void setup();
 	bool loop();
 	void cleanup();
+
+private:
+	Analog *ana;
 };
 
 #endif

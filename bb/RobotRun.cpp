@@ -1,16 +1,18 @@
 #include "RobotRun.h"
-#include "gpio\SimpleGPIO.h"
 
 using namespace std;
 
-RobotRun::RobotRun() { }
+RobotRun::RobotRun() { 
+	ana = new Analog();
+}
 
 RobotRun::~RobotRun() { }
 
 void RobotRun::setup() 
 {
 	// Setup functions
-	
+
+	ana->exportAllPins(); // Export all analog pins
 }
 
 bool RobotRun::loop() 
