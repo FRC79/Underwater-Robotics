@@ -9,15 +9,17 @@ ControllSlider stickX;
 ControllSlider stickY;
 ControllButton upButton;
 ControllButton downButton;
+
 PFont font;
 
 int joystick_ID = 2;
 float DEBOUNCE_VAL = 0.05;
 
-float x; // used to store joystick input
-float y;
-int goingUp;
-int goingDown;
+float x = 0; // used to store joystick input
+float y = 0;
+int goingUp = 0;
+int goingDown = 0;
+int ballastval = 0;
 
 // Debouncing joystick input
 float debounce(float val){
@@ -28,8 +30,8 @@ float debounce(float val){
 void setup() 
 { 
 
-//  arduinoPort = new Serial(this, Serial.list()[1], 9600); // Set arduinoPort to 9600 baud 
-
+  arduinoPort = new Serial(this, Serial.list()[4], 9600); // Set arduinoPort to 9600 baud 
+  println(Serial.list());
   // Setup the joystick controls
   controllIO = ControllIO.getInstance(this);
   joystick = controllIO.getDevice(joystick_ID);
@@ -47,15 +49,26 @@ void setup()
 void draw() 
 { 
   // Store joystick input
-  x = debounce(stickX.getValue());
-  y = debounce(stickY.getValue() * -1); // invert Y direction
+  x = debounce(stickX.getValue()) * 100;
+  y = debounce(stickY.getValue() * -1) * 100; // invert Y direction
   // Prevent both buttons from being pressed
   if(upButton.pressed() && downButton.pressed()){
     goingUp = 0;
     goingDown = 0;
+    ballastval = 0;
   } else {
     goingUp = upButton.pressed() ? 1 : 0;
     goingDown = downButton.pressed() ? 1 : 0;
+    if (upButton.pressed()) {
+      ballastval = 1;
+    }
+    else if (downButton.pressed()) {
+      ballastval = -1;
+    }
+    else {
+      ballastval = 0;
+    }
+    
   }
   
   // Set drawing parameters
@@ -70,6 +83,7 @@ void draw()
   text("Y: " + y, 30, 120);
   text("Up: " + goingUp, 30, 160);
   text("Down: " + goingDown, 30, 200);
+  text("Ballastval: " + ballastval, 30, 240);
 
   /* Send data back to arduino
   0  |  X joystick value
@@ -77,7 +91,8 @@ void draw()
   2  |  Up button value
   3  |  Down button value
                               */
-  arduinoPort.write(x + "," + y + "," + goingUp + "," + goingDown);
-
+  int xvalue = int(x);
+  int yvalue = int(y);  
+  arduinoPort.write(xvalue + "," + yvalue + "," + ballastval + "\n");
 
 } 
