@@ -33,7 +33,7 @@ void setup()
   // Setup the joystick controls
   controllIO = ControllIO.getInstance(this);
   joystick = controllIO.getDevice(joystick_ID);
-  stickX = joystick.getSlider(2);
+  stickX = joystick.getSlider(0);
   stickY = joystick.getSlider(1);
   upButton = joystick.getButton(2);
   downButton = joystick.getButton(1);
@@ -77,12 +77,7 @@ void draw()
   2  |  Up button value
   3  |  Down button value
                               */
-//  arduinoPort.write(x);
-//  arduinoPort.write(",");
-//  arduinoPort.write(y);
-//    arduinoPort.write(",");
-//    arduinoPort.write(goingUp);
-//    arduinoPort.write(",");
-//    arduinoPort.write(goingDown);
+  arduinoPort.write(x + "," + y + "," + goingUp + "," + goingDown);
+
 
 } 
